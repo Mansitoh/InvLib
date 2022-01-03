@@ -1,0 +1,5 @@
+name: InvLib
+version: '${project.version}'
+main: club.skilled.libraries.invlib.InvLib
+api-version: 1.18
+authors: [Mansitoh]
