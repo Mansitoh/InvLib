@@ -29,7 +29,12 @@ public interface InvLibInventory {
 
     Button getButtonToFillEmptySlots();
 
-    Button getButton(int slot,Player p);
+    public default Button getButton(int slot,Player p){
+        if(getButtons(p).containsKey(slot)) {
+            getButtons(p).get(slot);
+        }
+        return null;
+    }
 
 
     public default void open(Player p) {

@@ -53,13 +53,6 @@ public enum InvLibExampleInventorys implements InvLibInventory {
         return fill;
     }
 
-    @Override
-    public Button getButton(int slot, Player p) {
-        if(getButtons(p).containsKey(slot)) {
-            getButtons(p).get(slot);
-        }
-        return null;
-    }
 
 }
 
