@@ -3,6 +3,7 @@ package club.skilled.libraries.invlib.example;
 import club.skilled.libraries.invlib.menu.Button;
 import club.skilled.libraries.invlib.menu.InvLibInventory;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
@@ -60,9 +61,5 @@ public enum InvLibExampleInventorys implements InvLibInventory {
         return null;
     }
 
-    @Override
-    public Inventory getInventory() {
-        return null;
-    }
 }
 

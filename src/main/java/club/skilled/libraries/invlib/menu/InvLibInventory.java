@@ -16,7 +16,7 @@ import java.util.HashMap;
  * Discord: https://discord.link/Skilled
  * CEO: Skilled | Development
  */
-public interface InvLibInventory extends InventoryHolder {
+public interface InvLibInventory {
 
 
     public HashMap<Player,InvLibInventory> opennedInv = new HashMap<>();
