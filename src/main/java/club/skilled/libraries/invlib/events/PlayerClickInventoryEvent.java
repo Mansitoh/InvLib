@@ -1,6 +1,14 @@
 package club.skilled.libraries.invlib.events;
 
+import club.skilled.libraries.invlib.menu.Button;
+import club.skilled.libraries.invlib.menu.InvLibInventory;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.inventory.InventoryAction;
 
 /**
  * Created by Mansitoh
@@ -9,9 +17,28 @@ import org.bukkit.entity.Player;
  * Discord: https://discord.link/Skilled
  * CEO: Skilled | Development
  */
-public class PlayerClickInventoryEvent {
+@Getter
+@Setter
+public class PlayerClickInventoryEvent extends Event implements Cancellable {
 
-    public Player getPlayer() {
-        return null;
+    private static final HandlerList handlers = new HandlerList();
+    private Player player;
+    private InvLibInventory inventory;
+    private boolean cancelled;
+    private InventoryAction action;
+
+    public PlayerClickInventoryEvent(Player p,InvLibInventory inv,InventoryAction a) {
+        this.player = p;
+        this.inventory = inv;
+        this.action = a;
     }
+
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
 }

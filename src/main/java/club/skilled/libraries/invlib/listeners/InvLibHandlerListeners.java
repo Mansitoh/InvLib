@@ -1,6 +1,7 @@
 package club.skilled.libraries.invlib.listeners;
 
 import club.skilled.libraries.invlib.events.ButtonClickEvent;
+import club.skilled.libraries.invlib.events.PlayerClickInventoryEvent;
 import club.skilled.libraries.invlib.menu.Button;
 import club.skilled.libraries.invlib.menu.InvLibInventory;
 import org.bukkit.Bukkit;
@@ -27,8 +28,6 @@ public class InvLibHandlerListeners implements Listener {
         if(e.getClickedInventory() == null) return;
         if(e.getClickedInventory().getItem(e.getSlot()) == null) return;
         if(e.getView().getTopInventory() == null) return;
-        if(!(e.getView().getTopInventory().getHolder() instanceof InvLibInventory)) return;
-        if(!(e.getClickedInventory().getHolder() instanceof InvLibInventory)) return;
         if(!InvLibInventory.opennedInv.containsKey(p)) return;
         int slot = e.getSlot();
         if(slot == -1) return;
@@ -39,8 +38,12 @@ public class InvLibHandlerListeners implements Listener {
                 button = inv.getButtonToFillEmptySlots();
             }
         }
-        ButtonClickEvent buttonClickEvent = new ButtonClickEvent(p,inv,button,e.getAction());
-        Bukkit.getServer().getPluginManager().callEvent(buttonClickEvent);
+        PlayerClickInventoryEvent click = new PlayerClickInventoryEvent(p,inv,e.getAction());
+        Bukkit.getServer().getPluginManager().callEvent(click);
+        if(!click.isCancelled()) {
+            ButtonClickEvent buttonClickEvent = new ButtonClickEvent(p, inv, button, e.getAction());
+            Bukkit.getServer().getPluginManager().callEvent(buttonClickEvent);
+        }
         e.setCancelled(true);
 
     }

@@ -32,20 +32,20 @@ public interface InvLibInventory extends InventoryHolder {
     Button getButton(int slot,Player p);
 
 
-    public static void open(InvLibInventory creator, Player p) {
-        Inventory inv = Bukkit.createInventory(p, 9 * creator.getRows(p), ChatColor.translateAlternateColorCodes('&', creator.getDisplayname(p)));
-        if (creator.getButtonToFillEmptySlots() != null) {
-            for (int x = 0; x < 9 * creator.getRows(p); x++) {
-                inv.setItem(x, Button.getItem(creator.getButtonToFillEmptySlots(), p));
+    public default void open(Player p) {
+        Inventory inv = Bukkit.createInventory(p, 9 * this.getRows(p), ChatColor.translateAlternateColorCodes('&', this.getDisplayname(p)));
+        if (this.getButtonToFillEmptySlots() != null) {
+            for (int x = 0; x < 9 * this.getRows(p); x++) {
+                inv.setItem(x, Button.getItem(this.getButtonToFillEmptySlots(), p));
             }
         }
-        if (creator.getButtons(p) != null) {
-            for (int slot : creator.getButtons(p).keySet()) {
-                inv.setItem(slot, Button.getItem(creator.getButtons(p).get(slot), p));
+        if (this.getButtons(p) != null) {
+            for (int slot : this.getButtons(p).keySet()) {
+                inv.setItem(slot, Button.getItem(this.getButtons(p).get(slot), p));
             }
         }
         p.openInventory(inv);
-        opennedInv.put(p,creator);
+        opennedInv.put(p,this);
     }
 
 

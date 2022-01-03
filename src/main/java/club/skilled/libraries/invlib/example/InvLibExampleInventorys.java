@@ -4,6 +4,7 @@ import club.skilled.libraries.invlib.menu.Button;
 import club.skilled.libraries.invlib.menu.InvLibInventory;
 import lombok.AllArgsConstructor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import java.util.HashMap;
 import java.util.function.Predicate;
@@ -56,6 +57,11 @@ public enum InvLibExampleInventorys implements InvLibInventory {
         if(getButtons(p).containsKey(slot)) {
             getButtons(p).get(slot);
         }
+        return null;
+    }
+
+    @Override
+    public Inventory getInventory() {
         return null;
     }
 }
